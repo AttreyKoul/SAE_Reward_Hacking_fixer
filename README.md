@@ -19,8 +19,11 @@ We use the first 13650 prompts from Megtong's sycophancy dataset and all prompts
 To determine if a response is either eward hacked or sycophantic, we use ArmoRM and GPT-4o-mini together. We compute thresholds based on previous model responses to deetermine the margins for reward hacking/sycophancy. If the response's reward score falls in between the margins, it get's escalated to GPT-4o-mini. If not, the response is either logged as not reward hacked or sycohpnatic, or it is logged as sycophantic or reward hacked, depending on which responses we are analyzing.
 
 ### SAE Creation
-To create the Nested SAEs. we train each SAE on around 4.1 million activations. We give each SAE different widths, with similar widths as the original Matryoshka SAE paper. We use activations from 4 datasets for training the SAEs. We use The Pile, Reward Bench, Meg-Tong's sycophancy dataset, and ultrafeedback. For Reawrd Bench and Meg-tong's sychphnancy dataset, we use the responses already contained in the dataset and use the tokenizer for the model we are creating an SAE for to generate the activations needed for the SAE. 
+To create the Nested SAEs. we train each SAE on around 4.1 million activations. We give each SAE different widths, with similar widths as the original Matryoshka SAE paper. We use activations from 4 datasets for training the SAEs. We use The Pile, Reward Bench, Meg-Tong's sycophancy dataset, and ultrafeedback. For Reward Bench and Meg-tong's sychphnancy dataset, we use the responses already contained in the dataset and use the tokenizer for the model we are creating an SAE for to generate the activations needed for the SAE. 
 
 
 ### SAE Feature Analysis
+Currently not finished yet. This code reviews all the activations and plugs them into the SAE, and then uses 2 formulas to compute which features are most strongly correlated to either reward hacking or sycophancy.
 
+### Model Modification
+Currently unfinished. This code is intended to use the CSVs created from the feature analysis to decide which features to clamp in the model. We encode teh feature listed in the csv, and then decode that feature back into a model. We set up a hook in the model to scale down only that feature.
